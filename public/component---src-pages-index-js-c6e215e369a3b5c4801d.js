@@ -1,0 +1,2 @@
+(self.webpackChunknasa_data_source=self.webpackChunknasa_data_source||[]).push([[678],{704:function(e,a,n){"use strict";n.r(a);var u=n(294);a.default=function(){return u.createElement("div",null,"Index Page")}}}]);
+//# sourceMappingURL=component---src-pages-index-js-c6e215e369a3b5c4801d.js.map

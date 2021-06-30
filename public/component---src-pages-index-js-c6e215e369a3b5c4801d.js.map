@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://nasa-data-source/./src/pages/index.js"],"names":[],"mappings":"4IAIA,UAFkB,kBAAM","file":"component---src-pages-index-js-c6e215e369a3b5c4801d.js","sourcesContent":["import React from 'react';\n\nconst IndexPage = () => <div>Index Page</div>;\n\nexport default IndexPage;\n"],"sourceRoot":""}
