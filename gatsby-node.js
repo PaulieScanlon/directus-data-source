@@ -9,16 +9,21 @@ exports.sourceNodes = async ({
   createNodeId,
   createContentDigest
 }) => {
-  const { data } = await axios.get(
-    `https://api.nasa.gov/planetary/apod?api_key=${process.env.GATSBY_NASA_API_KEY}`
+  const {
+    data: { data }
+  } = await axios.get(
+    `https://api.apps.thedoodleproject.net/project/items/notes?limit=50?access_token=${process.env.DIRECTUS_ACCESS_TOKEN}&fields[]=*.*&fields[]=sku.sku_id.sku_name`
   );
 
-  createNode({
-    ...data,
-    id: createNodeId(data.date),
-    internal: {
-      type: 'apod',
-      contentDigest: createContentDigest(data)
-    }
+  data.forEach((item) => {
+    createNode({
+      ...item,
+      id: createNodeId(item.id),
+      slug: `${item.id}`,
+      internal: {
+        type: 'doodle',
+        contentDigest: createContentDigest(item)
+      }
+    });
   });
 };

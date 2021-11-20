@@ -1,34 +1,36 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 
-const IndexPage = () => {
+const Page = () => {
   const {
-    apod: { id, date, explanation, media_type, service_version, title, url }
+    allDoodle: { nodes }
   } = useStaticQuery(graphql`
-    query {
-      apod {
-        id
-        date
-        explanation
-        media_type
-        service_version
-        title
-        url
+    query allDoodleSlug {
+      allDoodle {
+        nodes {
+          slug
+        }
       }
     }
   `);
 
   return (
     <main>
-      <p>{date}</p>
-      <h1>{title}</h1>
-      <p>{explanation}</p>
-      <img alt={title} src={url} />
-      <p>{`id: ${id}`}</p>
-      <p>{`media_type: ${media_type}`}</p>
-      <p>{`service_version: ${service_version}`}</p>
+      <ul>
+        <li>
+          <Link to="/all-doodle-data">All Doodle Data</Link>
+        </li>
+        {nodes.map((node, index) => {
+          const { slug } = node;
+          return (
+            <li key={index}>
+              <Link to={`doodles/${slug}`}>{slug}</Link>
+            </li>
+          );
+        })}
+      </ul>
     </main>
   );
 };
 
-export default IndexPage;
+export default Page;
